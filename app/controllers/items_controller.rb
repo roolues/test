@@ -11,4 +11,16 @@ class ItemsController < ApplicationController
     @item = Item.new
   end
 
+  def criate
+    @item = Item.new(item_params)
+    @item.save
+    redirect_to "/items/#{item.id}"
+  end
+
+  private
+
+  def item_params
+    params.require(:item).permit(:name, :price, :seller_id, :description, :email, :image_url)
+  end
+
 end
